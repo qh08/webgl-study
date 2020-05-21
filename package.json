@@ -1,0 +1,8 @@
+{
+  "name": "webgl-study",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/qh08/webgl-study.git",
+  "author": "qh08 <wuqihong90@gmail.com>",
+  "license": "MIT"
+}
