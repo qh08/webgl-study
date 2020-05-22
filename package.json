@@ -6,6 +6,8 @@
   "author": "qh08 <wuqihong90@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "dev": "webpack-dev-server --config config/webpack.dev.js",
+    "start": "npm run dev",
     "build": "webpack -p --config config/webpack.common.js"
   },
   "devDependencies": {
@@ -15,6 +17,7 @@
     "@babel/preset-env": "^7.9.6",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "glob": "^7.1.6",
     "glslify": "^7.0.0",
     "glslify-import-loader": "^0.1.2",
     "glslify-loader": "^2.0.0",
@@ -22,6 +25,7 @@
     "raw-loader": "^4.0.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {}
