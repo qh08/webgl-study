@@ -5,6 +5,7 @@ export class WebglMaker {
     this.webglInstance = null;
     this.vertexShader = null;
     this.fragmentShader = null;
+    this.program = null;
   }
 
   setWebglInstance(webglInstance) {
@@ -31,23 +32,39 @@ export class WebglMaker {
 
   setProgram() {
     // 创建着色器程序
-    const program = this.webglInstance.createProgram();
+    this.program = this.webglInstance.createProgram();
 
     // 将顶点着色器挂载在着色器程序上
-    this.webglInstance.attachShader(program, this.vertexShader);
+    this.webglInstance.attachShader(this.program, this.vertexShader);
 
     // 将片元着色器挂在在着色器程序上
-    this.webglInstance.attachShader(program, this.fragmentShader);
+    this.webglInstance.attachShader(this.program, this.fragmentShader);
 
     // 链接着色器程序
-    this.webglInstance.linkProgram(program);
+    this.webglInstance.linkProgram(this.program);
 
     // 使用刚创建好到着色器程序
-    this.webglInstance.useProgram(program);
+    this.webglInstance.useProgram(this.program);
   }
 
   setClearColor(...args) {
     this.webglInstance.clearColor(...args);
+  }
+
+  getAttrib(key) {
+    return this.webglInstance.getAttribLocation(this.program, key);
+  }
+
+  setAttrib(key, ...value) {
+    this.webglInstance.vertexAttrib2f(key, ...value);
+  }
+
+  getUniform(key) {
+    return this.webglInstance.getUniformLocation(this.program, key);
+  }
+
+  setUniform(key, ...value) {
+    this.webglInstance.uniform4f(key, ...value);
   }
 
   clear() {
