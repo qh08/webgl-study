@@ -1,6 +1,7 @@
 import vertexShaderSource from './shader.vert';
 import fragmentShaderSource from './shader.frag';
 import { WebglMaker } from '../../utils';
+import '../../styles/index.less';
 
 var canvas = document.querySelector('#canvas');
 var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');

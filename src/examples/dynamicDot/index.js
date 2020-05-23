@@ -1,6 +1,8 @@
 import vertexShaderSource from './shader.vert';
 import fragmentShaderSource from './shader.frag';
-import { WebglMaker, getRandomColor } from '../../utils';
+import { WebglMaker, getRandomColor, getWebglSizeFromScreenSize } from '../../utils';
+
+import '../../styles/index.less';
 
 const canvas = document.querySelector('#canvas');
 const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
@@ -14,13 +16,12 @@ webglMaker.setClearColor(0.0, 0.0, 0.0, 1.0);
 webglMaker.clear();
 
 const aPosition = webglMaker.getAttrib('aPosition');
-const aScreenSize = webglMaker.getAttrib('aScreenSize');
 const uColor = webglMaker.getUniform('uColor');
 const points = [];
-
-webglMaker.setAttrib(aScreenSize, canvas.width, canvas.height);
+const { width: screenWidth, height: screenHeight } = canvas;
 
 canvas.addEventListener('click', (e) => {
+  console.dir(e)
   const { pageX: x, pageY: y } = e;
   const color = getRandomColor();
 
@@ -28,7 +29,7 @@ canvas.addEventListener('click', (e) => {
   webglMaker.clear();
 
   points.forEach(({ x, y, color }) => {
-    webglMaker.setAttrib(aPosition, x, y);
+    webglMaker.setAttrib(aPosition, ...getWebglSizeFromScreenSize(x, y, screenWidth, screenHeight));
     webglMaker.setUniform(uColor, ...color);
     webglMaker.draw(gl.POINTS, 0, 1);
   });
