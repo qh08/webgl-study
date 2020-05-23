@@ -74,4 +74,19 @@ export class WebglMaker {
   draw(type, first = 0, count = 1) {
     this.webglInstance.drawArrays(type, first, count);
   }
+
+  setupBuffer(pointer, size) {
+    this.webglInstance.bindBuffer(this.webglInstance.ARRAY_BUFFER, this.webglInstance.createBuffer());
+    this.setBufferData(pointer);
+    this.webglInstance.enableVertexAttribArray(pointer);
+    this.webglInstance.vertexAttribPointer(pointer, size, this.webglInstance.FLOAT, false, 0, 0);
+  }
+
+  setBufferData(pointer) {
+    this.webglInstance.bufferData(
+      this.webglInstance.ARRAY_BUFFER,
+      new Float32Array(pointer),
+      this.webglInstance.DYNAMIC_DRAW
+    );
+  }
 }
