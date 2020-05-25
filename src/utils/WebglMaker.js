@@ -75,12 +75,19 @@ export class WebglMaker {
     this.webglInstance.drawArrays(type, first, count);
   }
 
-  createBuffer(attribute, { size, type = this.webglInstance.FLOAT, normalize = false, stride = 0, offset = 0 }) {
+  createBuffer() {
     const buffer = this.webglInstance.createBuffer();
+    return buffer;
+  }
+
+  setBufferWithAttribute(
+    buffer,
+    attribute,
+    { size, type = this.webglInstance.FLOAT, normalize = false, stride = 0, offset = 0 }
+  ) {
     this.webglInstance.bindBuffer(this.webglInstance.ARRAY_BUFFER, buffer);
     this.webglInstance.enableVertexAttribArray(attribute);
     this.webglInstance.vertexAttribPointer(attribute, size, type, normalize, stride, offset);
-    return buffer;
   }
 
   setupBuffer(pointer, size) {
