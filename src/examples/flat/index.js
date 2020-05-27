@@ -61,7 +61,6 @@ const coords = [
 const buffer = webglMaker.createBuffer();
 webglMaker.setBufferWithAttribute(buffer, aPosition, { size: 2, stride: 24, offset: 0 });
 webglMaker.setBufferWithAttribute(buffer, aColor, { size: 4, stride: 24, offset: 8 });
-gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
 gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(coords), gl.DYNAMIC_DRAW);
 
 webglMaker.clear();
