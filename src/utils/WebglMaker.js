@@ -104,4 +104,13 @@ export class WebglMaker {
       this.webglInstance.DYNAMIC_DRAW
     );
   }
+
+  setBufferAndData(buffer, pointer) {
+    this.webglInstance.bindBuffer(this.webglInstance.ARRAY_BUFFER, buffer);
+    this.webglInstance.bufferData(
+      this.webglInstance.ARRAY_BUFFER,
+      new Float32Array(pointer),
+      this.webglInstance.DYNAMIC_DRAW
+    );
+  }
 }
