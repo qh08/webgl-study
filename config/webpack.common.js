@@ -49,13 +49,24 @@ module.exports = {
           { loader: 'css-loader', options: { importLoaders: 1 } },
           {
             loader: 'postcss-loader',
-          }
+          },
         ],
         exclude: /node_modules/,
       },
       {
         test: /\.(glsl|frag|vert)$/,
         use: ['glslify-import-loader', 'raw-loader', 'glslify-loader'],
+      },
+      {
+        test: /\.(jpeg|png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
       },
     ],
   },
